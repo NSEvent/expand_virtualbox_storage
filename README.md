@@ -1,6 +1,8 @@
 # Expand usable VirtualBox storage (for ext4 filesystems)
 This guide details how to expand your VirtualBox VM's storage with a Windows host and a Linux client
 
+Written by Kevin Tang
+
 ## IN WINDOWS (HOST)
 ### 1. Locate the VM's vdi file
 Mine was in "C:\Users\kvntng\VirtualBox VMs\Ubuntu 18.04.2 LTS\Ubuntu 18.04.2 LTS.vdi"
