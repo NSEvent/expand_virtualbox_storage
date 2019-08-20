@@ -1,4 +1,4 @@
-# Expand usable VirtualBox storage (for ext4 file systems)
+# Expand usable VirtualBox storage (for ext4 filesystems)
 This guide details how to expand your VirtualBox VM's storage with a Windows host and a Linux client
 
 ## IN WINDOWS (HOST)
@@ -39,8 +39,8 @@ This will expand the logical volume to 100% of the physical volume
 ```
 sudo lvresize -r -l 100%VG /dev/mapper/ubuntu--vg-root
 ```
-### Resize file system
-This will resize the file system to the full size of the logical volume
+### Resize filesystem
+This will resize the filesystem to the full size of the logical volume
 ```
 sudo resize2fs /dev/mapper/ubuntu--vg-root
 ```
