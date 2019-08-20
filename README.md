@@ -1,28 +1,45 @@
+This guide details how to expand your VirtualBox VM's storage with a Windows host and a Linux client
+
 # IN WINDOWS (HOST)
+## 1. Locate the VM's vdi file
+Mine was in "C:\Users\kvntng\VirtualBox VMs\Ubuntu 18.04.2 LTS\Ubuntu 18.04.2 LTS.vdi"
 
-## Locate the VM's vdi file
-Mine was found in "C:\Users\kvntng\VirtualBox VMs\Ubuntu 18.04.2 LTS\Ubuntu 18.04.2 LTS.vdi"
+## 2. Make a copy of the vdi before proceeding
 
-## Make a copy of the vdi before proceeding
-
-## In Windows Command Prompt
+## 3. Go to VirtualBox directory in Windows Command Prompt
+```
 cd “C:\Program Files\Oracle\VirtualBox”
+```
 
-## To resize the virtual disk to 80 GB
+## 4. Resize the virtual disk to a desired size
+The following command will resize to 80 GB
+```
 VBoxManage modifyhd "C:\Users\kvntng\VirtualBox VMs\Ubuntu 18.04.2 LTS\Ubuntu 18.04.2 LTS.vdi" --resize 81920
+```
 
-## VirtualBox should now detect the change in disk size
+## 5. Open VirtualBox. VirtualBox should now detect the change in disk size
 
 # IN LINUX (CLIENT) 
 
-## Use gparted to expand the disk space
+## 1. Use gparted to expand the disk space (physical volume)
+```
 gparted
+```
+Use the slider to adjust the space expanded
 
-## Find the name of the filesystem
+## 2. Find the name of the filesystem
+```
 df -h
+```
+Here the name is "/dev/ubuntu-vg/root" mounted on "/"
 
-## Here the name is "/dev/ubuntu-vg/root"
 ## Resize logical volume
+This will expand the logical volume to 100% of the physical volume
+```
 sudo lvresize -r -l 100%VG /dev/mapper/ubuntu--vg-root
+```
 ## Resize file system
+This will resize the file system to the full size of the logical volume
+```
 sudo resize2fs /dev/mapper/ubuntu--vg-root
+```
